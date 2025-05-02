@@ -1,25 +1,10 @@
 
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { supabase } from '@/integrations/supabase/client';
 import { Event } from '@/types/event';
 import { MailingListEntry } from '@/types/mailingList';
 
-// This is a placeholder - in a real app, you'd use environment variables
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-
-let supabaseInstance: SupabaseClient | null = null;
-
-const getSupabase = (): SupabaseClient => {
-  if (!supabaseInstance) {
-    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
-  }
-  return supabaseInstance;
-};
-
 // Public API functions
 export const getEvents = async (): Promise<Event[]> => {
-  const supabase = getSupabase();
-  
   const { data, error } = await supabase
     .from('events')
     .select('*')
@@ -31,8 +16,6 @@ export const getEvents = async (): Promise<Event[]> => {
 };
 
 export const addToMailingList = async (name: string, email: string): Promise<void> => {
-  const supabase = getSupabase();
-  
   // Check if email already exists
   const { data: existingData } = await supabase
     .from('mailing_list')
@@ -53,8 +36,6 @@ export const addToMailingList = async (name: string, email: string): Promise<voi
 
 // Admin API functions
 export const loginAdmin = async (email: string, password: string): Promise<void> => {
-  const supabase = getSupabase();
-  
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -64,14 +45,11 @@ export const loginAdmin = async (email: string, password: string): Promise<void>
 };
 
 export const logoutAdmin = async (): Promise<void> => {
-  const supabase = getSupabase();
   const { error } = await supabase.auth.signOut();
   if (error) throw error;
 };
 
 export const getMailingList = async (): Promise<MailingListEntry[]> => {
-  const supabase = getSupabase();
-  
   const { data, error } = await supabase
     .from('mailing_list')
     .select('*')
@@ -82,8 +60,6 @@ export const getMailingList = async (): Promise<MailingListEntry[]> => {
 };
 
 export const addEvent = async (eventData: Partial<Event>): Promise<Event> => {
-  const supabase = getSupabase();
-  
   const { data, error } = await supabase
     .from('events')
     .insert([eventData])
@@ -95,8 +71,6 @@ export const addEvent = async (eventData: Partial<Event>): Promise<Event> => {
 };
 
 export const deleteEvent = async (id: string): Promise<void> => {
-  const supabase = getSupabase();
-  
   const { error } = await supabase
     .from('events')
     .delete()
@@ -106,7 +80,6 @@ export const deleteEvent = async (id: string): Promise<void> => {
 };
 
 export const checkAdminAuthentication = async (): Promise<boolean> => {
-  const supabase = getSupabase();
   const { data } = await supabase.auth.getSession();
   
   return !!data.session;
