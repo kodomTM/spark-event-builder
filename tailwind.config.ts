@@ -64,10 +64,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				event: {
-					DEFAULT: '#F9A826', // Changed to gold
-					secondary: '#E09422', // Darker gold
-					light: '#FFF8E6', // Light gold/cream
-					dark: '#121212' // Dark color for backgrounds
+					DEFAULT: '#8B5CF6',
+					secondary: '#6E59A5',
+					light: '#E5DEFF',
+					dark: '#4C1D95'
 				}
 			},
 			borderRadius: {
