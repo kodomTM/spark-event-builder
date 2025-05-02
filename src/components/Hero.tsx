@@ -18,7 +18,7 @@ const Hero = () => {
       
       <div className="container relative z-10 px-4 py-16 text-center">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gradient-event animate-pulse-light">
-          SPARK <span className="text-foreground">Events</span>
+          BanditBoyzWorld <span className="text-foreground">Events</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto mb-8">
           Unforgettable experiences that ignite connections, inspire minds, and create lasting memories.

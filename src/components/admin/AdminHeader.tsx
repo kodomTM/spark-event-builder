@@ -23,7 +23,7 @@ const AdminHeader = () => {
     <header className="bg-white border-b border-gray-200 py-4">
       <div className="container px-4 flex justify-between items-center">
         <div className="flex items-center">
-          <h1 className="text-2xl font-bold text-gradient-event">SPARK Admin</h1>
+          <h1 className="text-2xl font-bold text-gradient-event">BanditBoyzWorld Admin</h1>
         </div>
         <Button 
           variant="outline"
