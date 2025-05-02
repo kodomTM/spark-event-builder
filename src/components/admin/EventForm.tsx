@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/components/ui/sonner';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { addEvent } from '@/lib/api';
-import { Event } from '@/types/event';
+import { Event, CreateEventInput } from '@/types/event';
 
 interface EventFormProps {
   onEventAdded: (event: Event) => void;
@@ -30,12 +30,15 @@ const EventForm: React.FC<EventFormProps> = ({ onEventAdded }) => {
     
     try {
       setLoading(true);
-      const newEvent = await addEvent({
+      
+      const eventInput: CreateEventInput = {
         title,
-        description,
         datetime,
         ticket_url: ticketUrl,
-      });
+        description: description || null,
+      };
+      
+      const newEvent = await addEvent(eventInput);
       
       toast.success('Event added successfully');
       onEventAdded(newEvent);

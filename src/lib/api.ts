@@ -1,6 +1,6 @@
 
 import { supabase } from '@/integrations/supabase/client';
-import { Event } from '@/types/event';
+import { Event, CreateEventInput } from '@/types/event';
 import { MailingListEntry } from '@/types/mailingList';
 
 // Public API functions
@@ -59,10 +59,10 @@ export const getMailingList = async (): Promise<MailingListEntry[]> => {
   return data || [];
 };
 
-export const addEvent = async (eventData: Partial<Event>): Promise<Event> => {
+export const addEvent = async (eventData: CreateEventInput): Promise<Event> => {
   const { data, error } = await supabase
     .from('events')
-    .insert([eventData])
+    .insert(eventData)
     .select()
     .single();
   
