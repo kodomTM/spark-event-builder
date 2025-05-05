@@ -1,24 +1,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
-} from '@/components/ui/carousel';
 
 // Array of event images
 const EVENT_IMAGES = [
-  '/lovable-uploads/1e7a480b-248c-4115-a2b1-10d2154a9575.png',
-  '/lovable-uploads/f0ae96d6-e490-4287-9e56-24bd3a810cd1.png',
-  '/lovable-uploads/3d8c70a8-17d1-4779-913d-0750d08069e3.png',
-  '/lovable-uploads/1fa788d8-efc0-4dcf-abc5-25bd73ad3972.png',
-  '/lovable-uploads/f9f19459-0b54-435b-8d52-a71a474ab68e.png',
-  '/lovable-uploads/768a60d0-4ffb-4351-85a4-cf09f753ddb5.png',
-  '/lovable-uploads/ded49108-a3af-42c4-bb33-4e664277e198.png',
-  '/lovable-uploads/4c874de5-ba41-4026-a78f-0fc5ef988710.png',
+  '/lovable-uploads/de6094d7-2c00-442c-b45c-fc4334c34f01.png',
+  '/lovable-uploads/e1316911-3364-418e-8f59-91fc69f410f1.png',
+  '/lovable-uploads/73922f66-9318-46e9-a572-00ddf70e2a1a.png',
+  '/lovable-uploads/7bb2be15-0aa7-450f-b9ab-b42d5367ab75.png',
+  '/lovable-uploads/3905ed35-d497-4a66-b0ee-5a8eb9414288.png',
+  '/lovable-uploads/f8cd5021-d1cf-48a7-8dd5-bc8a9674ddb8.png',
+  '/lovable-uploads/04405d29-d12b-4c65-a8a5-672edae063c2.png',
+  '/lovable-uploads/af233ef8-b42e-421f-af53-a123dc11418b.png',
 ];
 
 interface HeroSlideshowProps {
@@ -47,26 +40,23 @@ const HeroSlideshow: React.FC<HeroSlideshowProps> = ({ scrollToEvents, scrollToS
       <div className="absolute w-64 h-64 rounded-full bg-event/40 -top-20 -right-20 blur-3xl z-0"></div>
       <div className="absolute w-64 h-64 rounded-full bg-event/40 -bottom-20 -left-20 blur-3xl z-0"></div>
       
-      {/* Carousel */}
-      <Carousel className="w-full h-full">
-        <CarouselContent className="h-[90vh]">
-          {EVENT_IMAGES.map((image, index) => (
-            <CarouselItem key={index} className="h-full">
-              <div className="relative w-full h-full">
-                <img 
-                  src={image} 
-                  alt={`Event scene ${index + 1}`} 
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-
-        {/* Custom navigation arrows */}
-        <CarouselPrevious className="absolute left-4 bg-black/30 border-event hover:bg-black/70 text-event z-20" />
-        <CarouselNext className="absolute right-4 bg-black/30 border-event hover:bg-black/70 text-event z-20" />
-      </Carousel>
+      {/* Slideshow */}
+      <div className="w-full h-full">
+        {EVENT_IMAGES.map((image, index) => (
+          <div 
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100 z-5' : 'opacity-0 z-0'
+            }`}
+          >
+            <img 
+              src={image} 
+              alt={`Event scene ${index + 1}`} 
+              className="object-cover w-full h-full"
+            />
+          </div>
+        ))}
+      </div>
       
       {/* Content overlay */}
       <div className="absolute inset-0 z-20 flex items-center justify-center">
@@ -86,7 +76,7 @@ const HeroSlideshow: React.FC<HeroSlideshowProps> = ({ scrollToEvents, scrollToS
             </Button>
             <Button 
               variant="outline" 
-              className="border-2 border-event hover:bg-event/20 text-white px-8 py-6 text-lg"
+              className="border-2 border-event hover:bg-event/20 text-black px-8 py-6 text-lg"
               onClick={scrollToSignup}
             >
               Join Mailing List
