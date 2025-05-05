@@ -2,26 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
-// Import images directly with correct path format
-import eventImage1 from '/lovable-uploads/de6094d7-2c00-442c-b45c-fc4334c34f01.png';
-import eventImage2 from '/lovable-uploads/e1316911-3364-418e-8f59-91fc69f410f1.png';
-import eventImage3 from '/lovable-uploads/73922f66-9318-46e9-a572-00ddf70e2a1a.png';
-import eventImage4 from '/lovable-uploads/7bb2be15-0aa7-450f-b9ab-b42d5367ab75.png';
-import eventImage5 from '/lovable-uploads/3905ed35-d497-4a66-b0ee-5a8eb9414288.png';
-import eventImage6 from '/lovable-uploads/f8cd5021-d1cf-48a7-8dd5-bc8a9674ddb8.png';
-import eventImage7 from '/lovable-uploads/04405d29-d12b-4c65-a8a5-672edae063c2.png';
-import eventImage8 from '/lovable-uploads/af233ef8-b42e-421f-af53-a123dc11418b.png';
-
-// Array of event images
-const EVENT_IMAGES = [
-  eventImage1,
-  eventImage2,
-  eventImage3,
-  eventImage4,
-  eventImage5,
-  eventImage6,
-  eventImage7,
-  eventImage8,
+// Define placeholder images until actual images are loaded
+const PLACEHOLDER_IMAGES = [
+  'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&q=80',
 ];
 
 interface HeroSlideshowProps {
@@ -35,7 +25,7 @@ const HeroSlideshow: React.FC<HeroSlideshowProps> = ({ scrollToEvents, scrollToS
   // Auto-advance slides
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % EVENT_IMAGES.length);
+      setCurrentSlide((prev) => (prev + 1) % PLACEHOLDER_IMAGES.length);
     }, 5000);
     
     return () => clearInterval(interval);
@@ -52,7 +42,7 @@ const HeroSlideshow: React.FC<HeroSlideshowProps> = ({ scrollToEvents, scrollToS
       
       {/* Slideshow */}
       <div className="w-full h-full">
-        {EVENT_IMAGES.map((image, index) => (
+        {PLACEHOLDER_IMAGES.map((image, index) => (
           <div 
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
