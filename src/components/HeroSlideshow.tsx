@@ -2,16 +2,26 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
+// Import images directly
+import eventImage1 from '/public/lovable-uploads/de6094d7-2c00-442c-b45c-fc4334c34f01.png';
+import eventImage2 from '/public/lovable-uploads/e1316911-3364-418e-8f59-91fc69f410f1.png';
+import eventImage3 from '/public/lovable-uploads/73922f66-9318-46e9-a572-00ddf70e2a1a.png';
+import eventImage4 from '/public/lovable-uploads/7bb2be15-0aa7-450f-b9ab-b42d5367ab75.png';
+import eventImage5 from '/public/lovable-uploads/3905ed35-d497-4a66-b0ee-5a8eb9414288.png';
+import eventImage6 from '/public/lovable-uploads/f8cd5021-d1cf-48a7-8dd5-bc8a9674ddb8.png';
+import eventImage7 from '/public/lovable-uploads/04405d29-d12b-4c65-a8a5-672edae063c2.png';
+import eventImage8 from '/public/lovable-uploads/af233ef8-b42e-421f-af53-a123dc11418b.png';
+
 // Array of event images
 const EVENT_IMAGES = [
-  '/lovable-uploads/de6094d7-2c00-442c-b45c-fc4334c34f01.png',
-  '/lovable-uploads/e1316911-3364-418e-8f59-91fc69f410f1.png',
-  '/lovable-uploads/73922f66-9318-46e9-a572-00ddf70e2a1a.png',
-  '/lovable-uploads/7bb2be15-0aa7-450f-b9ab-b42d5367ab75.png',
-  '/lovable-uploads/3905ed35-d497-4a66-b0ee-5a8eb9414288.png',
-  '/lovable-uploads/f8cd5021-d1cf-48a7-8dd5-bc8a9674ddb8.png',
-  '/lovable-uploads/04405d29-d12b-4c65-a8a5-672edae063c2.png',
-  '/lovable-uploads/af233ef8-b42e-421f-af53-a123dc11418b.png',
+  eventImage1,
+  eventImage2,
+  eventImage3,
+  eventImage4,
+  eventImage5,
+  eventImage6,
+  eventImage7,
+  eventImage8,
 ];
 
 interface HeroSlideshowProps {
