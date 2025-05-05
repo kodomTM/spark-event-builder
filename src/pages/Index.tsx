@@ -9,8 +9,12 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Hero />
-      <EventsSection />
-      <SignupForm />
+      <div id="events">
+        <EventsSection />
+      </div>
+      <div id="signup">
+        <SignupForm />
+      </div>
       <Footer />
     </div>
   );
