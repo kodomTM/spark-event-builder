@@ -4,14 +4,14 @@ import { Button } from '@/components/ui/button';
 
 // Define placeholder images until actual images are loaded
 const PLACEHOLDER_IMAGES = [
-  'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&q=80',
+  'https://i.postimg.cc/76pvbyhg/IMG-5422.jpg?auto=format&fit=crop&q=80',
+  'https://i.postimg.cc/Hk2CzKvg/IMG-5423.jpg?auto=format&fit=crop&q=80',
+  'https://i.postimg.cc/zvWsgPH4/IMG-5424.jpg?auto=format&fit=crop&q=80',
+  'https://i.postimg.cc/bYtcWdVL/IMG-5428-2.jpg?auto=format&fit=crop&q=80',
+  'https://i.postimg.cc/GhnwCrZR/IMG-5440.jpg?auto=format&fit=crop&q=80',
+  'https://i.postimg.cc/0NX1RSqX/IMG-5447.jpg?auto=format&fit=crop&q=80',
+  'https://i.postimg.cc/R0ZxDR2n/IMG-5454-2.jpg?auto=format&fit=crop&q=80',
+  'https://i.postimg.cc/qRtVk7JJ/IMG-5459-2.jpg?auto=format&fit=crop&q=80',
 ];
 
 interface HeroSlideshowProps {
