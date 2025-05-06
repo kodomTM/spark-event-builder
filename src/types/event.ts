@@ -15,3 +15,11 @@ export interface CreateEventInput {
   ticket_url: string;
   description?: string | null;
 }
+
+// Add a type for event updates
+export interface UpdateEventInput {
+  title?: string;
+  datetime?: string;
+  ticket_url?: string;
+  description?: string | null;
+}

@@ -1,6 +1,6 @@
 
 import { supabase } from '@/integrations/supabase/client';
-import { Event, CreateEventInput } from '@/types/event';
+import { Event, CreateEventInput, UpdateEventInput } from '@/types/event';
 import { MailingListEntry } from '@/types/mailingList';
 
 // Public API functions
@@ -70,6 +70,29 @@ export const addEvent = async (eventData: CreateEventInput): Promise<Event> => {
   return data;
 };
 
+export const updateEvent = async (id: string, eventData: UpdateEventInput): Promise<Event> => {
+  const { data, error } = await supabase
+    .from('events')
+    .update(eventData)
+    .eq('id', id)
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
+};
+
+export const getEventById = async (id: string): Promise<Event> => {
+  const { data, error } = await supabase
+    .from('events')
+    .select('*')
+    .eq('id', id)
+    .single();
+  
+  if (error) throw error;
+  return data;
+};
+
 export const deleteEvent = async (id: string): Promise<void> => {
   const { error } = await supabase
     .from('events')
@@ -83,4 +106,25 @@ export const checkAdminAuthentication = async (): Promise<boolean> => {
   const { data } = await supabase.auth.getSession();
   
   return !!data.session;
+};
+
+// Export mailing list to different formats
+export const exportMailingListToCSV = (entries: MailingListEntry[]): string => {
+  // Create CSV header
+  const csvContent = [
+    'Name,Email,Signup Date',
+    ...entries.map(entry => 
+      `"${entry.name.replace(/"/g, '""')}","${entry.email}","${new Date(entry.created_at).toLocaleDateString()}"`
+    )
+  ].join('\n');
+  
+  return csvContent;
+};
+
+export const exportMailingListToJSON = (entries: MailingListEntry[]): string => {
+  return JSON.stringify(entries, null, 2);
+};
+
+export const exportMailingListToTXT = (entries: MailingListEntry[]): string => {
+  return entries.map(entry => `${entry.name} <${entry.email}>`).join('\n');
 };

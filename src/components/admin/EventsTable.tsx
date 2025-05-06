@@ -6,13 +6,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { deleteEvent } from '@/lib/api';
 import { Event } from '@/types/event';
 import { formatDate } from '@/lib/utils';
+import { Pencil, Trash } from 'lucide-react';
 
 interface EventsTableProps {
   events: Event[];
   onEventDeleted: (id: string) => void;
+  onEditEvent: (id: string) => void;
 }
 
-const EventsTable: React.FC<EventsTableProps> = ({ events, onEventDeleted }) => {
+const EventsTable: React.FC<EventsTableProps> = ({ events, onEventDeleted, onEditEvent }) => {
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this event?')) {
       try {
@@ -73,13 +75,22 @@ const EventsTable: React.FC<EventsTableProps> = ({ events, onEventDeleted }) => 
                     </a>
                   </td>
                   <td className="py-3 px-3 text-right">
-                    <Button
-                      variant="destructive"
-                      size="sm"
-                      onClick={() => handleDelete(event.id)}
-                    >
-                      Delete
-                    </Button>
+                    <div className="flex justify-end gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onEditEvent(event.id)}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => handleDelete(event.id)}
+                      >
+                        <Trash className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))}

@@ -5,6 +5,7 @@ import { toast } from '@/components/ui/sonner';
 import AdminHeader from '@/components/admin/AdminHeader';
 import EventForm from '@/components/admin/EventForm';
 import EventsTable from '@/components/admin/EventsTable';
+import EventEditForm from '@/components/admin/EventEditForm';
 import MailingListTable from '@/components/admin/MailingListTable';
 import { checkAdminAuthentication, getEvents, getMailingList } from '@/lib/api';
 import { Event } from '@/types/event';
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const [mailingList, setMailingList] = useState<MailingListEntry[]>([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
   const [loadingMailingList, setLoadingMailingList] = useState(true);
+  const [editingEventId, setEditingEventId] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,6 +64,12 @@ const Dashboard = () => {
     setEvents([...events, event]);
   };
 
+  const handleEventUpdated = (updatedEvent: Event) => {
+    setEvents(events.map(event => 
+      event.id === updatedEvent.id ? updatedEvent : event
+    ));
+  };
+
   const handleEventDeleted = (id: string) => {
     setEvents(events.filter(event => event.id !== id));
   };
@@ -83,6 +91,7 @@ const Dashboard = () => {
               <EventsTable 
                 events={events}
                 onEventDeleted={handleEventDeleted}
+                onEditEvent={setEditingEventId}
               />
               
               <MailingListTable 
@@ -93,6 +102,13 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      
+      <EventEditForm 
+        eventId={editingEventId}
+        isOpen={!!editingEventId}
+        onClose={() => setEditingEventId(null)}
+        onEventUpdated={handleEventUpdated}
+      />
     </div>
   );
 };
